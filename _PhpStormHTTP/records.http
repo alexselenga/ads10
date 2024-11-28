@@ -1,0 +1,10 @@
+### List (index)
+GET {{apiUrl}}/records
+Content-Type: application/json
+
+{
+    "search": {
+        "digit": 4,
+        "city": "Ernserhaven"
+    }
+}
