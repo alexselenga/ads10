@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RecordController;
+use App\Http\Middleware\EnsureAccessIsValid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(RecordController::class)->group(function () {
     Route::get('/records', 'index');
+    Route::get('/records/{myRecord}', 'show');
+    Route::get('/records2/{record}', 'show2')->middleware(EnsureAccessIsValid::class);
 });
