@@ -8,3 +8,19 @@ Content-Type: application/json
         "city": "Ernserhaven"
     }
 }
+
+
+### Show - "access": 1
+GET {{apiUrl}}/records/{{recordId1}}
+
+
+### Show - "access": 0
+GET {{apiUrl}}/records/{{recordId2}}
+
+
+### Show2 - "access": 1
+GET {{apiUrl}}/records2/{{recordId1}}
+
+
+### Show2 - "access": 0
+GET {{apiUrl}}/records2/{{recordId2}}
