@@ -1,5 +1,4 @@
 Отключаем xDebug в IDE
-php artisan serve
 composer install
 
 .env
@@ -9,5 +8,6 @@ composer install
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
+php artisan serve
 npm install
 vite
