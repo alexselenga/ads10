@@ -1,22 +1,14 @@
 ﻿<script setup>
-import {ref, reactive} from 'vue'
+import {ref, reactive, onMounted} from 'vue'
 import {VueSpinner} from 'vue3-spinners'
 
 const keys = ['city', 'name', 'digit', 'email', 'float', 'phone', 'number', 'address', 'company', 'country_code']
-
-const search = reactive([
-    {
-        key: "digit",
-        value: 4
-    },
-    {
-        key: "city",
-        value: "South Summer"
-    }
-])
-
+const search = reactive([])
 const data = ref([])
 const loading = ref(false)
+
+onMounted( () => getData() )
+
 function searchPush() {
     search.push({
         key: '',
@@ -26,6 +18,7 @@ function searchPush() {
 
 function searchPop() {
     search.pop()
+    getData()
 }
 
 async function getData() {
@@ -36,7 +29,6 @@ async function getData() {
     })
 
     loading.value = false;
-
     data.value = response.data;
 }
 </script>
@@ -45,7 +37,8 @@ async function getData() {
     <div id="spinner">
         <VueSpinner size="20" color="red" v-show="loading"/>
     </div>
-    <table id="data">
+
+    <table id="data" v-if="data.length">
         <tr>
             <th>Id</th><th>Access</th><th>Data</th>
         </tr>
@@ -53,10 +46,16 @@ async function getData() {
             <td>{{item.id}}</td><td>{{item.access}}</td><td>{{item.data}}</td>
         </tr>
     </table>
+    <div v-else>
+        Список пуст. Проверьте параметры поиска.
+    </div>
+
     <hr>
+
     <button @click="searchPush">Добавить условие</button>
     <button @click="searchPop">Удалить последнее условие</button>
     <button @click="getData">Получить</button>
+
     <table id="search">
         <tr>
             <th>Key</th><th>Value</th>

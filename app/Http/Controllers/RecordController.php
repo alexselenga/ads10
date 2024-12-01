@@ -10,7 +10,10 @@ class RecordController extends Controller
     public function index()
     {
         $search = request()->input('search', []);
-        return Record::whereJsonContainsKeyValues('data', $search)->get()->toArray();
+
+        return Record::whereJsonContainsKeyValues('data', $search)
+            ->where('access', 1)
+            ->get();
     }
 
     public function show(Record $record)
