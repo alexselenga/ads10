@@ -3,10 +3,16 @@ GET {{apiUrl}}/records
 Content-Type: application/json
 
 {
-    "search": {
-        "digit": 4,
-        "city": "Ernserhaven"
-    }
+    "search": [
+        {
+            "key": "digit",
+            "value": 4
+        },
+        {
+            "key": "city",
+            "value": "South Summer"
+        }
+    ]
 }
 
 

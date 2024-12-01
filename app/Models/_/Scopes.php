@@ -9,10 +9,14 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait Scopes
 {
-    public function scopeWhereJsonContainsKeyValues(Builder $query, string $fieldName, array $keyValues, string $boolean = 'or'): void
+    public function scopeWhereJsonContainsKeyValues(Builder $query, string $fieldName, array $search, string $boolean = 'or'): void
     {
-        foreach ($keyValues as $key => $value) {
-            $query->whereJsonContains("$fieldName->$key" , $value, $boolean);
+        foreach ($search as $item) {
+            $key = "$fieldName->".$item['key'];
+            $value = $item['value'];
+            $value = (float)$value != $value ? $value : (float)$value;
+
+            $query->whereJsonContains($key, $value, $boolean);
         }
     }
 }
