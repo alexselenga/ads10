@@ -61,19 +61,23 @@ async function getData() {
     <button @click="getData">Получить</button>
 
     <table id="search">
-        <tr>
-            <th>Key</th><th>Value</th>
-        </tr>
-        <tr v-for="(item, index) in search" :key="index">
-            <td>
-                <select v-model="item.key">
-                    <option disabled value="">Выберите ключ</option>
-                    <option v-for="value in keys">{{value}}</option>
-                </select>
-            </td>
-            <td>
-                <input v-model="item.value" placeholder="отредактируй меня" />
-            </td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Key</th><th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(item, index) in search" :key="index">
+                <td>
+                    <select v-model="item.key" @change="getData">
+                        <option disabled value="">Выберите ключ</option>
+                        <option v-for="value in keys">{{value}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input v-model="item.value" @input="getData" placeholder="отредактируй меня" />
+                </td>
+            </tr>
+        </tbody>
     </table>
 </template>
