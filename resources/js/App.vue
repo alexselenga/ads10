@@ -39,12 +39,16 @@ async function getData() {
     </div>
 
     <table id="data" v-if="data.length">
-        <tr>
-            <th>Id</th><th>Access</th><th>Data</th>
-        </tr>
-        <tr v-for="item in data" :key="item.id">
-            <td>{{item.id}}</td><td>{{item.access}}</td><td>{{item.data}}</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Id</th><th>Access</th><th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in data" :key="item.id">
+                <td>{{item.id}}</td><td>{{item.access}}</td><td>{{item.data}}</td>
+            </tr>
+        </tbody>
     </table>
     <div v-else>
         Список пуст. Проверьте параметры поиска.
