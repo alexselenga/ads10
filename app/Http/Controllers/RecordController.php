@@ -25,4 +25,14 @@ class RecordController extends Controller
     {
         return $record;
     }
+
+    public function show(Record $record)
+    {
+        Gate::authorize('view', $record);
+        return $record;
+    }
+    public function show2(Record $record)
+    {
+        return $record;
+    }
 }
